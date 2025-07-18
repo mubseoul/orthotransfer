@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     /**
+     * Create a new controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
+    /**
      * Show the login form.
      */
     public function showLoginForm()

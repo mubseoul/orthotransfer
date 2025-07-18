@@ -39,7 +39,7 @@
                         <a href="{{ route('home') ?? '/' }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                             Home
                         </a>
-                        <a href="" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
+                        <a href="#" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                             Find Doctors
                         </a>
                         <a href="{{ route('register.patient.form') }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
@@ -50,7 +50,7 @@
                         </a>
                         @auth
                             @if(auth()->user()->isDoctor())
-                                <a href="" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
+                                <a href="#" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                                     My Practice
                                 </a>
                             @endif
@@ -97,12 +97,12 @@
                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         Dashboard
                                     </a>
-                                    <a href="" 
+                                    <a href="#" 
                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         Profile Settings
                                     </a>
                                     @if(auth()->user()->isAdmin())
-                                        <a href="" 
+                                        <a href="#" 
                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             Admin Panel
                                         </a>
@@ -143,7 +143,7 @@
                         <a href="{{ route('home') ?? '/' }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
                             Home
                         </a>
-                        <a href="" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
+                        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
                             Find Doctors
                         </a>
                         <a href="{{ route('register.patient.form') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
@@ -227,10 +227,10 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="" class="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
-                        <li><a href="" class="text-gray-400 hover:text-white transition-colors">Find Doctors</a></li>
-                        <li><a href="" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Find Doctors</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
 
@@ -238,10 +238,9 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Support</h3>
                     <ul class="space-y-2">
-                        <li><a href="" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -252,9 +251,9 @@
                     © {{ date('Y') }} OrthoTransfer. All rights reserved.
                 </div>
                 <div class="mt-4 md:mt-0 flex space-x-6 text-sm text-gray-400">
-                    <a href="" class="hover:text-white transition-colors">Privacy</a>
-                    <a href="" class="hover:text-white transition-colors">Terms</a>
-                    <a href="" class="hover:text-white transition-colors">Cookies</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookies</a>
                 </div>
             </div>
         </div>

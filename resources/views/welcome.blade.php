@@ -116,7 +116,7 @@
             <p class="text-xl text-sky-100 mb-8">
                 Join thousands of patients who have successfully transferred their treatment.
             </p>
-            <a href="" 
+            <a href="{{ route('register.patient.form') }}" 
                class="bg-white text-sky-600 hover:bg-gray-100 font-medium py-3 px-8 rounded-lg transition-colors text-lg">
                 Get Started Today
             </a>
