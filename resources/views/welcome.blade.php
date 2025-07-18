@@ -15,11 +15,11 @@
                     Continue your orthodontic journey with confidence.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="" 
+                    <a href="{{ route('register.patient.form') }}" 
                        class="btn-primary text-lg px-8 py-3">
                         Find Doctors Near You
                     </a>
-                    <a href="" 
+                    <a href="{{ route('register.doctor.form') }}" 
                        class="bg-white text-sky-600 border-2 border-sky-600 hover:bg-sky-50 font-medium py-3 px-8 rounded-lg transition-colors text-lg">
                         Join as a Doctor
                     </a>

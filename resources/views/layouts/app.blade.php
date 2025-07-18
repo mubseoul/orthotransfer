@@ -42,11 +42,11 @@
                         <a href="" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                             Find Doctors
                         </a>
-                        <a href="" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
-                            How It Works
+                        <a href="{{ route('register.patient.form') }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
+                            For Patients
                         </a>
-                        <a href="" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
-                            About
+                        <a href="{{ route('register.doctor.form') }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
+                            For Doctors
                         </a>
                         @auth
                             @if(auth()->user()->isDoctor())
@@ -65,7 +65,7 @@
                         <a href="" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                             Sign In
                         </a>
-                        <a href="" class="btn-primary">
+                        <a href="{{ route('register.patient.form') }}" class="btn-primary">
                             Get Started
                         </a>
                     @else
@@ -146,11 +146,11 @@
                         <a href="" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
                             Find Doctors
                         </a>
-                        <a href="" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
-                            How It Works
+                        <a href="{{ route('register.patient.form') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
+                            For Patients
                         </a>
-                        <a href="" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
-                            About
+                        <a href="{{ route('register.doctor.form') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
+                            For Doctors
                         </a>
                     </div>
                 </div>
@@ -160,6 +160,18 @@
 
     <!-- Main Content -->
     <main class="min-h-screen">
+        @if(session('success'))
+            <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 mx-4 sm:mx-6 lg:mx-8 mt-4 rounded-md">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        @if(session('error'))
+            <div class="bg-red-50 border border-red-200 text-red-800 px-4 py-3 mx-4 sm:mx-6 lg:mx-8 mt-4 rounded-md">
+                {{ session('error') }}
+            </div>
+        @endif
+        
         @yield('content')
     </main>
 
