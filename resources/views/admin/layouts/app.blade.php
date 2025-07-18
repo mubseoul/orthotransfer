@@ -107,6 +107,60 @@
                 <!-- Divider -->
                 <div class="border-t border-slate-200 my-4"></div>
 
+                <!-- Options Management with Dropdown -->
+                <div x-data="{ optionsOpen: false }" class="relative">
+                    <button @click="optionsOpen = !optionsOpen" 
+                            class="group flex items-center justify-between w-full px-4 py-3 text-sm font-medium rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 {{ request()->routeIs('admin.options.*') ? 'bg-blue-50 text-blue-700' : '' }}">
+                        <div class="flex items-center">
+                            <div class="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600 transition-colors duration-200 {{ request()->routeIs('admin.options.*') ? 'text-blue-600' : '' }}">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                </svg>
+                            </div>
+                            Options
+                        </div>
+                        <svg class="h-4 w-4 text-slate-400 transition-transform duration-200" 
+                             :class="{ 'rotate-180': optionsOpen }"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <div x-show="optionsOpen" 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 scale-y-90"
+                         x-transition:enter-end="opacity-100 scale-y-100"
+                         x-transition:leave="transition ease-in duration-150"
+                         x-transition:leave-start="opacity-100 scale-y-100"
+                         x-transition:leave-end="opacity-0 scale-y-90"
+                         class="mt-2 pl-8 space-y-1 origin-top">
+                        <a href="{{ route('admin.options.index', 'treatments') }}" 
+                           class="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-150 {{ request()->routeIs('admin.options.*') && request()->route('type') == 'treatments' ? 'bg-blue-50 text-blue-700' : '' }}">
+                            Treatments
+                        </a>
+                        <a href="{{ route('admin.options.index', 'functional-appliances') }}" 
+                           class="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-150 {{ request()->routeIs('admin.options.*') && request()->route('type') == 'functional-appliances' ? 'bg-blue-50 text-blue-700' : '' }}">
+                            Functional Appliances
+                        </a>
+                        <a href="{{ route('admin.options.index', 'tads') }}" 
+                           class="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-150 {{ request()->routeIs('admin.options.*') && request()->route('type') == 'tads' ? 'bg-blue-50 text-blue-700' : '' }}">
+                            TADs
+                        </a>
+                        <a href="{{ route('admin.options.index', 'doctor-types') }}" 
+                           class="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-150 {{ request()->routeIs('admin.options.*') && request()->route('type') == 'doctor-types' ? 'bg-blue-50 text-blue-700' : '' }}">
+                            Doctor Types
+                        </a>
+                        <a href="{{ route('admin.options.index', 'transfer-types') }}" 
+                           class="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-150 {{ request()->routeIs('admin.options.*') && request()->route('type') == 'transfer-types' ? 'bg-blue-50 text-blue-700' : '' }}">
+                            Transfer Types
+                        </a>
+                        <a href="{{ route('admin.options.index', 'insurance-providers') }}" 
+                           class="block px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-150 {{ request()->routeIs('admin.options.*') && request()->route('type') == 'insurance-providers' ? 'bg-blue-50 text-blue-700' : '' }}">
+                            Insurance Providers
+                        </a>
+                    </div>
+                </div>
+
                 <a href="#" 
                    class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200">
                     <div class="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
