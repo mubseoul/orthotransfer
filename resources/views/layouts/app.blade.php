@@ -62,7 +62,7 @@
                 <div class="flex items-center space-x-4">
                     @guest
                         <!-- Guest User Actions -->
-                        <a href="" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                             Sign In
                         </a>
                         <a href="{{ route('register.patient.form') }}" class="btn-primary">
@@ -93,7 +93,7 @@
                                  x-transition:leave-end="transform opacity-0 scale-95"
                                  class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
                                 <div class="py-1">
-                                    <a href="" 
+                                    <a href="{{ route('dashboard') }}" 
                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         Dashboard
                                     </a>
@@ -108,7 +108,7 @@
                                         </a>
                                     @endif
                                     <div class="border-t border-gray-100"></div>
-                                    <form method="POST" action="">
+                                    <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" 
                                                 class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
