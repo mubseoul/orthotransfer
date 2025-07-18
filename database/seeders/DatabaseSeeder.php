@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminOptionsSeeder::class,
             AdminSeeder::class,
+            DoctorSeeder::class,
         ]);
     }
 }
