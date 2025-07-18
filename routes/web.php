@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AddressController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,6 +31,19 @@ Route::post('/register/doctor', [RegisterController::class, 'registerDoctor'])->
 // Protected routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Profile routes
+    Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
+    Route::put('/dashboard/profile', [ProfileController::class, 'update'])->name('dashboard.profile.update');
+    
+    // Address routes
+    Route::get('/dashboard/addresses', [AddressController::class, 'index'])->name('dashboard.addresses');
+    Route::get('/dashboard/addresses/create', [AddressController::class, 'create'])->name('dashboard.addresses.create');
+    Route::post('/dashboard/addresses', [AddressController::class, 'store'])->name('dashboard.addresses.store');
+    Route::get('/dashboard/addresses/{address}/edit', [AddressController::class, 'edit'])->name('dashboard.addresses.edit');
+    Route::put('/dashboard/addresses/{address}', [AddressController::class, 'update'])->name('dashboard.addresses.update');
+    Route::patch('/dashboard/addresses/{address}/set-current', [AddressController::class, 'setCurrent'])->name('dashboard.addresses.set-current');
+    Route::delete('/dashboard/addresses/{address}', [AddressController::class, 'destroy'])->name('dashboard.addresses.destroy');
 });
 
 
