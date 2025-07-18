@@ -1,18 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
-@section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Sidebar -->
-        <x-dashboard-sidebar />
-
-        <!-- Main Content -->
-        <div class="flex-1">
-            <div class="space-y-8">
-                <!-- Header Section -->
-                @include('dashboard.partials.header')
+@section('main-content')
+   <!-- Welcome Section -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">Welcome back, {{ $user->first_name }}!</h1>
+                <p class="text-gray-600 mt-2">
+                    @if($user->isPatient())
+                        Patient Dashboard - Find and connect with orthodontists
+                    @elseif($user->isDoctor())
+                        Doctor Dashboard - Manage your practice and patient connections
+                    @else
+                        Dashboard - Manage your OrthoTransfer profile
+                    @endif
+                </p>
+            </div>
+            <div class="text-right">
+                <div class="text-sm text-gray-500">{{ now()->format('l, F j, Y') }}</div>
+                <div class="text-2xl font-bold text-gray-900">{{ now()->format('g:i A') }}</div>
             </div>
         </div>
-    </div>
-</div>
+    </div> 
 @endsection 
