@@ -1,0 +1,88 @@
+# Orthotransfer Project
+
+## Project Overview
+Orthotransfer is a Laravel 12 web application built with PHP 8.2+ and Tailwind CSS. This appears to be a fresh Laravel installation that can be customized for orthodontic transfer or medical data management purposes.
+
+## Technology Stack
+- **Backend**: Laravel 12 (PHP 8.2+)
+- **Frontend**: Tailwind CSS 4.0, Vite 6.2.4
+- **Database**: SQLite (default, configurable)
+- **Testing**: PHPUnit 11.5.3
+- **Development Tools**: Laravel Sail, Laravel Pint, Laravel Pail
+
+## Project Structure
+```
+orthotransfer/
+├── app/                     # Application core (Models, Controllers, Services)
+│   ├── Http/Controllers/    # HTTP Controllers
+│   ├── Models/             # Eloquent Models
+│   └── Providers/          # Service Providers
+├── bootstrap/              # Framework bootstrap files
+├── config/                 # Configuration files
+├── database/               # Database migrations, factories, seeders
+├── public/                 # Web server document root
+├── resources/              # Views, CSS, JS assets
+│   ├── css/               # Stylesheets
+│   ├── js/                # JavaScript files
+│   └── views/             # Blade templates
+├── routes/                 # Route definitions
+├── storage/               # Application storage (logs, cache, uploads)
+└── tests/                 # Test files
+```
+
+## Key Files
+- `composer.json` - PHP dependencies and autoloading
+- `package.json` - Node.js dependencies and build scripts
+- `artisan` - Laravel command-line interface
+- `vite.config.js` - Frontend build configuration
+- `.env` - Environment configuration (not tracked in git)
+
+## Development Commands
+- `php artisan serve` - Start development server
+- `npm run dev` - Start Vite development server with hot reload
+- `npm run build` - Build assets for production
+- `php artisan migrate` - Run database migrations
+- `php artisan tinker` - Interactive Laravel shell
+- `vendor/bin/sail up` - Start Docker development environment (if using Sail)
+
+## Current Features
+- Basic Laravel installation with welcome page
+- User authentication system (ready to use)
+- Database migrations for users, cache, and jobs
+- Tailwind CSS integration
+- Vite build system
+
+## Architecture Notes
+- Follows Laravel's MVC pattern
+- Uses Eloquent ORM for database interactions
+- Blade templating engine for views
+- PSR-4 autoloading standards
+- Follows Laravel best practices and conventions
+
+## Environment Setup
+1. Copy `.env.example` to `.env`
+2. Run `php artisan key:generate`
+3. Configure database settings in `.env`
+4. Run `composer install`
+5. Run `npm install`
+6. Run `php artisan migrate`
+
+## Testing
+- Feature tests in `tests/Feature/`
+- Unit tests in `tests/Unit/`
+- Run tests with `php artisan test` or `vendor/bin/phpunit`
+
+## Deployment Considerations
+- Ensure proper file permissions for `storage/` and `bootstrap/cache/`
+- Configure web server document root to `public/`
+- Set appropriate environment variables
+- Run `php artisan config:cache` and `php artisan route:cache` for production
+- Build assets with `npm run build`
+
+## Next Steps
+This is a fresh Laravel installation ready for customization. Consider:
+- Defining specific models and migrations for orthodontic data
+- Creating custom controllers and routes
+- Implementing authentication and authorization
+- Adding API endpoints if needed
+- Configuring email and other services 
