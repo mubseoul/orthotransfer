@@ -159,7 +159,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="min-h-screen">
+    <main class="min-h-screen bg-gradient-to-br from-sky-50 to-blue-100">
         @if(session('success'))
             <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 mx-4 sm:mx-6 lg:mx-8 mt-4 rounded-md">
                 {{ session('success') }}

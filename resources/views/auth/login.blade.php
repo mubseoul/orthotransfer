@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-gradient-to-br from-sky-50 to-blue-100 py-16">
+<div class="py-16">
     <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white shadow-lg rounded-lg">
             <!-- Header -->
@@ -55,21 +55,6 @@
                         </button>
                     </div>
                 </form>
-
-                <!-- Sign Up Links -->
-                <div class="mt-8 pt-6 border-t border-gray-200">
-                    <div class="text-center">
-                        <p class="text-sm text-gray-600 mb-4">Don't have an account?</p>
-                        <div class="flex flex-col space-y-2">
-                            <a href="{{ route('register.patient.form') }}" class="btn-secondary w-full py-2 text-center">
-                                Sign Up as Patient
-                            </a>
-                            <a href="{{ route('register.doctor.form') }}" class="btn-outline w-full py-2 text-center">
-                                Sign Up as Doctor
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
