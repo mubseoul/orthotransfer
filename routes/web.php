@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
@@ -24,6 +25,20 @@ Route::post('/register/patient', [RegisterController::class, 'registerPatient'])
 
 Route::get('/register/doctor', [RegisterController::class, 'showDoctorForm'])->name('register.doctor.form');
 Route::post('/register/doctor', [RegisterController::class, 'registerDoctor'])->name('register.doctor');
+
+// Admin authentication routes
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminLoginController::class, 'login']);
+    Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+    
+    // Protected admin routes
+    Route::middleware('admin')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+    });
+});
 
 // Protected routes
 Route::middleware('auth')->group(function () {
