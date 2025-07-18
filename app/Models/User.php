@@ -24,6 +24,7 @@ class User extends Authenticatable
         'is_approved',
         'approved_at',
         'approved_by',
+        'profile_picture',
     ];
 
     /**
@@ -104,5 +105,18 @@ class User extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Get the profile picture URL
+     */
+    public function getProfilePictureUrlAttribute()
+    {
+        if ($this->profile_picture) {
+            return asset('storage/' . $this->profile_picture);
+        }
+        
+        // Return a default avatar if no profile picture
+        return asset('images/default-avatar.svg');
     }
 }

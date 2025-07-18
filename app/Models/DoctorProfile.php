@@ -37,4 +37,6 @@ class DoctorProfile extends Model
     {
         return $this->belongsToMany(InsuranceProvider::class, 'doctor_insurance_providers');
     }
+
+
 } 

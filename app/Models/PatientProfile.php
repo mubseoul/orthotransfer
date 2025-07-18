@@ -54,4 +54,6 @@ class PatientProfile extends Model
     {
         return $this->belongsToMany(Tad::class, 'patient_tads');
     }
+
+
 } 

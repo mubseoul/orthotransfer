@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Models\DoctorType;
 use App\Models\Treatment;
@@ -46,7 +47,9 @@ class ProfileController extends Controller
             return view('dashboard.profile', compact('user', 'profile', 'transferTypes', 'insuranceProviders'));
         }
         
-        return view('dashboard.profile', compact('user'));
+        // For users without a specific role, set profile to null
+        $profile = null;
+        return view('dashboard.profile', compact('user', 'profile'));
     }
 
     /**
@@ -80,6 +83,7 @@ class ProfileController extends Controller
                 'functional_appliances.*' => 'exists:functional_appliances,id',
                 'tads' => 'array',
                 'tads.*' => 'exists:tads,id',
+                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ];
         } elseif ($user->isDoctor()) {
             $profileRules = [
@@ -92,6 +96,7 @@ class ProfileController extends Controller
                 'transfer_types.*' => 'exists:transfer_types,id',
                 'insurance_providers' => 'array',
                 'insurance_providers.*' => 'exists:insurance_providers,id',
+                'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ];
         } else {
             $profileRules = [];
@@ -100,12 +105,26 @@ class ProfileController extends Controller
         $request->validate(array_merge($userRules, $profileRules));
         
         DB::transaction(function () use ($request, $user) {
-            // Update user basic information
-            $user->update([
+            // Handle profile picture upload (common for all users)
+            $userData = [
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
-            ]);
+            ];
+
+            if ($request->hasFile('profile_picture')) {
+                // Delete old profile picture if exists
+                if ($user->profile_picture) {
+                    Storage::disk('public')->delete($user->profile_picture);
+                }
+                
+                // Store new profile picture
+                $userData['profile_picture'] = $request->file('profile_picture')
+                    ->store('profile-pictures', 'public');
+            }
+            
+            // Update user basic information
+            $user->update($userData);
             
             // Update role-specific profile
             if ($user->isPatient()) {
