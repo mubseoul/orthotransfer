@@ -14,7 +14,8 @@ class AdminLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
+        // Temporarily disable guest middleware to test
+        // $this->middleware('guest:admin')->except('logout');
     }
 
     /**
@@ -22,7 +23,7 @@ class AdminLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.admin-login');
+        return view('admin.auth.login');
     }
 
     /**
