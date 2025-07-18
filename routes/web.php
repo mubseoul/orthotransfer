@@ -34,6 +34,10 @@ Route::middleware('auth')->group(function () {
     // Profile routes
     Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::put('/dashboard/profile', [ProfileController::class, 'update'])->name('dashboard.profile.update');
+    
+    // Ortho Detail routes (Patient only)
+    Route::get('/dashboard/ortho-detail', [ProfileController::class, 'orthoDetail'])->name('dashboard.ortho-detail');
+    Route::put('/dashboard/ortho-detail', [ProfileController::class, 'updateOrthoDetail'])->name('dashboard.ortho-detail.update');
 });
 
 
