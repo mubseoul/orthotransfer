@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\DoctorPracticeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,6 +51,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [AddressController::class, 'destroy'])->name('destroy');
         Route::post('/{id}/set-current', [AddressController::class, 'setCurrent'])->name('set-current');
     });
+
+    // Practice settings (Doctor only)
+    Route::get('/dashboard/practice', [DoctorPracticeController::class, 'index'])->name('dashboard.practice');
+    Route::put('/dashboard/practice', [DoctorPracticeController::class, 'update'])->name('dashboard.practice.update');
+
+    // Practice address (Doctor only)
+    Route::get('/dashboard/practice-address', [DoctorPracticeController::class, 'address'])->name('dashboard.practice.address');
+    Route::put('/dashboard/practice-address', [DoctorPracticeController::class, 'updateAddress'])->name('dashboard.practice.address.update');
 });
 
 

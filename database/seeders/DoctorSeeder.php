@@ -245,12 +245,12 @@ class DoctorSeeder extends Seeder
             ]);
 
             // Associate transfer types
-            $transferTypes = TransferType::whereIn('name', $doctorData['transfer_types'])->get();
-            $profile->transferTypes()->attach($transferTypes->pluck('id'));
+            $transferTypes = TransferType::whereIn('name', $doctorData['transfer_types'])->get()->unique('id');
+            $profile->transferTypes()->syncWithoutDetaching($transferTypes->pluck('id'));
 
             // Associate insurance providers
-            $insuranceProviders = InsuranceProvider::whereIn('name', $doctorData['insurance_providers'])->get();
-            $profile->insuranceProviders()->attach($insuranceProviders->pluck('id'));
+            $insuranceProviders = InsuranceProvider::whereIn('name', $doctorData['insurance_providers'])->get()->unique('id');
+            $profile->insuranceProviders()->syncWithoutDetaching($insuranceProviders->pluck('id'));
         }
 
         $this->command->info('Doctor seeder completed! Created ' . count($doctors) . ' doctors.');

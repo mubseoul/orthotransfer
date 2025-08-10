@@ -82,7 +82,7 @@ class AdminOptionsSeeder extends Seeder
         ];
 
         foreach ($transferTypes as $transferType) {
-            TransferType::create($transferType);
+            TransferType::firstOrCreate(['name' => $transferType['name']], $transferType);
         }
 
         // Insurance Providers
@@ -101,7 +101,7 @@ class AdminOptionsSeeder extends Seeder
         ];
 
         foreach ($insuranceProviders as $provider) {
-            InsuranceProvider::create($provider);
+            InsuranceProvider::firstOrCreate(['name' => $provider['name']], $provider);
         }
     }
 } 
