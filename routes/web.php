@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DoctorPracticeController;
 use App\Http\Controllers\DoctorPatientController;
+use App\Http\Controllers\FindDoctorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +17,9 @@ Route::get('/', function () {
 Route::get('/demo', function () {
     return view('demo');
 })->name('demo');
+
+// Public: Find a Doctor
+Route::get('/find-a-doctor', [FindDoctorController::class, 'index'])->name('find-doctor');
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

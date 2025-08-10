@@ -14,23 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create admin user
-        User::create([
-            'first_name' => 'Admin',
-            'last_name' => 'User',
-            'email' => 'admin@orthotransfer.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-            'is_approved' => true,
-            'approved_at' => now(),
-            'email_verified_at' => now(),
-        ]);
+        // Ensure single admin user in users table for app login as well
+        User::updateOrCreate(
+            ['email' => 'admin@admin.com'],
+            [
+                'first_name' => 'Admin',
+                'last_name' => 'User',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+                'is_approved' => true,
+                'approved_at' => now(),
+                'email_verified_at' => now(),
+            ]
+        );
 
         // Seed admin options and admin users
         $this->call([
             AdminOptionsSeeder::class,
             AdminSeeder::class,
             DoctorSeeder::class,
+            NYCSeeder::class,
         ]);
     }
 }

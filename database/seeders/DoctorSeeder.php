@@ -207,11 +207,12 @@ class DoctorSeeder extends Seeder
         ];
 
         foreach ($doctors as $doctorData) {
-            // Create user
-            $user = User::create([
+            // Create or update user to avoid duplicate emails on reseed
+            $user = User::updateOrCreate([
+                'email' => $doctorData['user']['email'],
+            ], [
                 'first_name' => $doctorData['user']['first_name'],
                 'last_name' => $doctorData['user']['last_name'],
-                'email' => $doctorData['user']['email'],
                 'password' => Hash::make('password123'),
                 'role' => $doctorData['user']['role'],
                 'is_approved' => $doctorData['user']['is_approved'],
@@ -219,30 +220,33 @@ class DoctorSeeder extends Seeder
                 'email_verified_at' => now(),
             ]);
 
-            // Create doctor profile
-            $profile = DoctorProfile::create([
-                'user_id' => $user->id,
-                'title' => $doctorData['profile']['title'],
-                'phone_number' => $doctorData['profile']['phone_number'],
-                'website' => $doctorData['profile']['website'],
-                'bio' => $doctorData['profile']['bio'],
-                'minimum_monthly_payment' => $doctorData['profile']['minimum_monthly_payment'],
-            ]);
+            // Create or update doctor profile
+            $profile = DoctorProfile::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'title' => $doctorData['profile']['title'],
+                    'phone_number' => $doctorData['profile']['phone_number'],
+                    'website' => $doctorData['profile']['website'],
+                    'bio' => $doctorData['profile']['bio'],
+                    'minimum_monthly_payment' => $doctorData['profile']['minimum_monthly_payment'],
+                ]
+            );
 
-            // Create address
-            UserAddress::create([
-                'user_id' => $user->id,
-                'label' => $doctorData['address']['label'],
-                'address_line_1' => $doctorData['address']['address_line_1'],
-                'address_line_2' => $doctorData['address']['address_line_2'],
-                'city' => $doctorData['address']['city'],
-                'state' => $doctorData['address']['state'],
-                'postal_code' => $doctorData['address']['postal_code'],
-                'country' => $doctorData['address']['country'],
-                'latitude' => $doctorData['address']['latitude'],
-                'longitude' => $doctorData['address']['longitude'],
-                'is_current' => $doctorData['address']['is_current'],
-            ]);
+            // Create or update address
+            UserAddress::updateOrCreate(
+                ['user_id' => $user->id, 'is_current' => true],
+                [
+                    'label' => $doctorData['address']['label'],
+                    'address_line_1' => $doctorData['address']['address_line_1'],
+                    'address_line_2' => $doctorData['address']['address_line_2'],
+                    'city' => $doctorData['address']['city'],
+                    'state' => $doctorData['address']['state'],
+                    'postal_code' => $doctorData['address']['postal_code'],
+                    'country' => $doctorData['address']['country'],
+                    'latitude' => $doctorData['address']['latitude'],
+                    'longitude' => $doctorData['address']['longitude'],
+                ]
+            );
 
             // Associate transfer types
             $transferTypes = TransferType::whereIn('name', $doctorData['transfer_types'])->get()->unique('id');

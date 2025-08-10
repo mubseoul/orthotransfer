@@ -33,7 +33,7 @@
                         <a href="{{ route('home') ?? '/' }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                             Home
                         </a>
-                        <a href="#" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
+                        <a href="{{ route('find-doctor') }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
                             Find Doctors
                         </a>
                         <a href="{{ route('register.patient.form') }}" class="text-gray-700 hover:text-sky-600 px-3 py-2 text-sm font-medium transition-colors">
@@ -137,7 +137,7 @@
                         <a href="{{ route('home') ?? '/' }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
                             Home
                         </a>
-                        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
+                        <a href="{{ route('find-doctor') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">
                             Find Doctors
                         </a>
                         <a href="{{ route('register.patient.form') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-sky-600 hover:bg-gray-50">

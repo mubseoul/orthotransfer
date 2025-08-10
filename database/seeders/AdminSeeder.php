@@ -14,22 +14,15 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create default admin user
-        Admin::create([
-            'first_name' => 'Admin',
-            'last_name' => 'User',
-            'email' => 'admin@orthotransfer.com',
-            'password' => Hash::make('password'),
-            'email_verified_at' => now(),
-        ]);
-
-        // Create additional admin for testing (optional)
-        Admin::create([
-            'first_name' => 'Super',
-            'last_name' => 'Admin',
-            'email' => 'superadmin@orthotransfer.com',
-            'password' => Hash::make('password'),
-            'email_verified_at' => now(),
-        ]);
+        // Create single admin
+        Admin::updateOrCreate(
+            ['email' => 'admin@admin.com'],
+            [
+                'first_name' => 'Admin',
+                'last_name' => 'User',
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+            ]
+        );
     }
 }
