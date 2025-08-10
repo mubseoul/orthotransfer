@@ -54,19 +54,9 @@
                     Dashboard
                 </a>
 
-                <a href="#" 
-                   class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200">
-                    <div class="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                        </svg>
-                    </div>
-                    Users
-                </a>
-
-                <a href="#" 
-                   class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200">
-                    <div class="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+                <a href="{{ route('admin.doctors.index') }}" 
+                   class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.doctors.*') ? 'bg-blue-50 text-blue-700 shadow-sm' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                    <div class="mr-3 h-5 w-5 transition-colors duration-200 {{ request()->routeIs('admin.doctors.*') ? 'text-blue-600' : 'text-slate-400 group-hover:text-slate-600' }}">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
@@ -74,9 +64,9 @@
                     Doctors
                 </a>
 
-                <a href="#" 
-                   class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200">
-                    <div class="mr-3 h-5 w-5 text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+                <a href="{{ route('admin.patients.index') }}" 
+                   class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.patients.*') ? 'bg-blue-50 text-blue-700 shadow-sm' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                    <div class="mr-3 h-5 w-5 transition-colors duration-200 {{ request()->routeIs('admin.patients.*') ? 'text-blue-600' : 'text-slate-400 group-hover:text-slate-600' }}">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
@@ -251,7 +241,7 @@
                                     <div class="px-4 py-3 text-xs text-slate-500 border-b border-slate-100 bg-slate-50 rounded-t-xl">
                                         Signed in as <span class="font-medium text-slate-900">{{ auth('admin')->user()->email ?? 'admin@example.com' }}</span>
                                     </div>
-                                    <a href="#" 
+                                    <a href="{{ route('admin.profile') }}" 
                                        class="flex items-center px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-all duration-150">
                                         <div class="mr-3 h-4 w-4 text-slate-400">
                                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">

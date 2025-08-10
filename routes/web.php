@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AddressController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +39,17 @@ Route::middleware('auth')->group(function () {
     // Ortho Detail routes (Patient only)
     Route::get('/dashboard/ortho-detail', [ProfileController::class, 'orthoDetail'])->name('dashboard.ortho-detail');
     Route::put('/dashboard/ortho-detail', [ProfileController::class, 'updateOrthoDetail'])->name('dashboard.ortho-detail.update');
+
+    // Address routes (Patient only)
+    Route::prefix('/dashboard/addresses')->name('dashboard.addresses.')->group(function () {
+        Route::get('/', [AddressController::class, 'index'])->name('index');
+        Route::get('/create', [AddressController::class, 'create'])->name('create');
+        Route::post('/', [AddressController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [AddressController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [AddressController::class, 'update'])->name('update');
+        Route::delete('/{id}', [AddressController::class, 'destroy'])->name('destroy');
+        Route::post('/{id}/set-current', [AddressController::class, 'setCurrent'])->name('set-current');
+    });
 });
 
 

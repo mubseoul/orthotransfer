@@ -101,6 +101,21 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'approved_by');
     }
 
+    // Doctor ↔ Patients many-to-many
+    public function patients()
+    {
+        return $this->belongsToMany(User::class, 'doctor_patient', 'doctor_user_id', 'patient_user_id')
+                    ->withTimestamps()
+                    ->where('users.role', 'patient');
+    }
+
+    public function doctors()
+    {
+        return $this->belongsToMany(User::class, 'doctor_patient', 'patient_user_id', 'doctor_user_id')
+                    ->withTimestamps()
+                    ->where('users.role', 'doctor');
+    }
+
     // Full name accessor
     public function getFullNameAttribute(): string
     {
