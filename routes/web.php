@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DoctorPracticeController;
+use App\Http\Controllers\DoctorPatientController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -59,6 +60,20 @@ Route::middleware('auth')->group(function () {
     // Practice address (Doctor only)
     Route::get('/dashboard/practice-address', [DoctorPracticeController::class, 'address'])->name('dashboard.practice.address');
     Route::put('/dashboard/practice-address', [DoctorPracticeController::class, 'updateAddress'])->name('dashboard.practice.address.update');
+
+    // Doctor Patients
+    Route::get('/dashboard/patients', [DoctorPatientController::class, 'index'])->name('dashboard.patients.index');
+    Route::post('/dashboard/patients', [DoctorPatientController::class, 'store'])->name('dashboard.patients.store');
+    Route::get('/dashboard/patients/{patientId}', [DoctorPatientController::class, 'show'])->name('dashboard.patients.show');
+    Route::post('/dashboard/patients/{patientId}/upload', [DoctorPatientController::class, 'upload'])->name('dashboard.patients.upload');
+    Route::get('/dashboard/patients/{patientId}/ortho', [DoctorPatientController::class, 'editOrtho'])->name('dashboard.patients.ortho.edit');
+    Route::put('/dashboard/patients/{patientId}/ortho', [DoctorPatientController::class, 'updateOrtho'])->name('dashboard.patients.ortho.update');
+
+    // Patient Doctors
+    Route::get('/dashboard/my-doctors', [DoctorPatientController::class, 'myDoctors'])->name('dashboard.doctors.index');
+    
+    Route::get('/dashboard/my-doctors/{doctorId}', [DoctorPatientController::class, 'myDoctorDetail'])->name('dashboard.doctors.show');
+    Route::post('/dashboard/my-doctors/{doctorId}/respond', [DoctorPatientController::class, 'respondToDoctor'])->name('dashboard.doctors.respond');
 });
 
 

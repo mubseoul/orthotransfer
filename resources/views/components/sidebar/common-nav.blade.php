@@ -32,6 +32,13 @@
     </svg>
     Practice Address
 </a>
+<a href="{{ route('dashboard.patients.index') }}" 
+   class="flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('dashboard.patients.*') ? 'bg-sky-50 text-sky-700 shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
+    <svg class="mr-3 h-5 w-5 {{ request()->routeIs('dashboard.patients.*') ? 'text-sky-600' : 'text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A3 3 0 017 17h10a3 3 0 012.879 2.196M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+    My Patients
+</a>
 @endif 
 
 <!-- Ortho Details Link (Patient Only) -->
@@ -53,5 +60,12 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" />
     </svg>
     Addresses
+</a>
+<a href="{{ route('dashboard.doctors.index') }}" 
+   class="flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('dashboard.doctors.*') ? 'bg-sky-50 text-sky-700 shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
+    <svg class="mr-3 h-5 w-5 {{ request()->routeIs('dashboard.doctors.*') ? 'text-sky-600' : 'text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m0-4a4 4 0 118 0 4 4 0 01-8 0z" />
+    </svg>
+    My Doctors
 </a>
 @endif
