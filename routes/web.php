@@ -20,6 +20,7 @@ Route::get('/demo', function () {
 
 // Public: Find a Doctor
 Route::get('/find-a-doctor', [FindDoctorController::class, 'index'])->name('find-doctor');
+Route::get('/find-a-doctor/profile', [FindDoctorController::class, 'profile'])->name('find-doctor.profile');
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

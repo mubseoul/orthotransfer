@@ -15,6 +15,7 @@ class FindDoctorController extends Controller
         $zip = trim((string) $request->input('zip', ''));
         $age = $request->input('age', '20_plus'); // under_20 | 20_plus
         $sort = $request->input('sort', 'name_asc'); // name_asc | name_desc
+        $q = trim((string) $request->input('q', ''));
 
         // Base query for approved doctors with a current address
         $query = User::query()
@@ -33,6 +34,14 @@ class FindDoctorController extends Controller
 
         // NOTE: Age filter is a UI preference for now; no data dimension to filter by currently
 
+        if ($q !== '') {
+            $query->where(function ($sub) use ($q) {
+                $like = '%' . str_replace(['%','_'], ['\%','\_'], $q) . '%';
+                $sub->where('first_name', 'like', $like)
+                    ->orWhere('last_name', 'like', $like);
+            });
+        }
+
         $doctors = null;
         if ($zip !== '') {
             if ($sort === 'name_desc') {
@@ -48,7 +57,35 @@ class FindDoctorController extends Controller
             'zip' => $zip,
             'age' => $age,
             'sort' => $sort,
+            'q' => $q,
             'doctors' => $doctors,
+        ]);
+    }
+
+    /**
+     * Public doctor profile page.
+     * URL: /find-a-doctor/profile?profile={doctorUserId}
+     */
+    public function profile(Request $request)
+    {
+        $id = (int) $request->query('profile');
+        if ($id <= 0) {
+            abort(404);
+        }
+
+        /** @var User|null $doctor */
+        $doctor = User::where('id', $id)
+            ->where('role', 'doctor')
+            ->where('is_approved', true)
+            ->with(['doctorProfile.transferTypes', 'doctorProfile.insuranceProviders', 'currentAddress'])
+            ->first();
+
+        if (!$doctor) {
+            abort(404);
+        }
+
+        return view('find-a-doctor-profile', [
+            'doctor' => $doctor,
         ]);
     }
 }
